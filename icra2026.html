@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="GenTact-Prox: 3D-printed Whole-Body Tactile and Proximity Sensors">
+  <meta name="keywords" content="GenTact, Prox, Proximity, Tactile, Sensors, 3D Printing, Robot Skin">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GenTact-Prox | GenTact Toolbox</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/hiro_icon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="./index.html">
+        <span class="icon">
+          <i class="fas fa-home"></i>
+        </span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title"><b style="color: #8528aa">GenTact-Prox</b>: Design, Mapping, and Contact Anticipation with 3D-printed Whole-Body Tactile and Proximity Sensors</h1>
+          <div class="is-size-5 publication-authors">
+            <!-- Authors to be added -->
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup></sup>University of Colorado Boulder</span>
+            <div style="margin: 2rem 0;"></div>
+          </div>
+          
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <img src="static/images/hiro_logo.png" style="height: 2em; margin-left: 2em; vertical-align: middle;">
+              <img src="static/images/atlas_logo.png" style="height: 2em; margin-left: 2em; vertical-align: middle;">
+            </span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div style="margin: 1rem 0;"></div>
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. --> 
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/cKohl10/GenTact" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                </a>
+              </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background-color: #f5f5f5;">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-2">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Robots operating in dynamic and shared environments benefit from anticipating contact before it occurs. We present <b style="color: #8528aa">GenTact-Prox</b>, an extension of the <a href="./icra2025.html">GenTact Toolbox</a> that integrates tactile and proximity sensing for contact detection and anticipation. Building on GenTact's procedural design pipeline, GenTact-Prox embeds 3D-printed capacitive electrodes within the artificial skin to enable proximity detection up to 18 cm—going beyond the binary contact sensing of the original system. To characterize how robots perceive nearby space through heterogeneously distributed capacitive sensors, we introduce a data-driven framework for mapping the <b>proximal receptive field (PRF)</b>—the body-centric volume where sensors provide actionable information for contact anticipation. We demonstrate this approach on a Franka Research 3 robot equipped with five GenTact-Prox units, enabling online object-aware operation and contact prediction.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Extension Overview -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-2">Contributions</h2>
+        <div class="content has-text-justified">
+          <p>
+            Building on the <a href="./icra2025.html">GenTact Toolbox</a> procedural design pipeline for whole-body, 3D-printed tactile skins, <b style="color: #8528aa">GenTact-Prox</b> introduces two key advances: <b>(i)</b> capacitive sensing that enables both tactile and <b>proximity detection</b>, and <b>(ii)</b> a data-driven framework for mapping the <b>proximal receptive field (PRF)</b> to enable contact anticipation. While the original GenTact pipeline enabled binary contact sensing, GenTact-Prox extends this capability to detect objects up to 18 cm away from the robot's body.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contributions -->
+    <!-- <div class="columns is-centered has-text-centered" style="margin-top: 2rem;">
+      <div class="column">
+        <h2 class="title is-2">Novel Contributions</h2>
+        <div class="content has-text-justified">
+          <ol>
+            <li><b>Capacitive Sensing for Proximity Detection:</b> Extension of the GenTact pipeline to integrate 3D-printed capacitive electrodes that sense both direct contact and pre-contact proximity stimuli, achieving detection ranges of 2.6 to 18 cm.</li>
+            <li><b>Proximal Receptive Field (PRF) Mapping:</b> A machine learning framework using ensemble MLPs to map the body-centric volume where arbitrarily distributed capacitive sensors provide actionable information for contact anticipation.</li>
+          </ol>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- Design Pipeline -->
+    <div class="columns is-centered has-text-centered" style="margin-top: 2rem;">
+      <div class="column">
+        <h2 class="title is-2">Procedural Design Pipeline</h2>
+        <div class="content has-text-justified">
+          <p>
+            Skin units are procedurally generated using Blender geometry nodes, automatically conforming to robot morphology through dermis molding, sensor distribution, routing, and wiring operations. Capacitive electrodes are embedded internally within the dermis layer to prevent direct capacitive coupling, enabling proximity sensing while maintaining procedural design benefits.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Self-Capacitance Sensing -->
+    <div class="columns is-centered has-text-centered" style="margin-top: 2rem;">
+      <div class="column">
+        <h2 class="title is-2">Self-Capacitance for Proximity Detection</h2>
+        <div class="content has-text-justified">
+          <p>
+            Self-capacitance enables detection of both touch and proximity. Capacitive sensors create an electrostatic field that is perturbed when nearby conductive or dielectric objects approach the electrode. By measuring the charge time in a resistor-capacitor (RC) circuit, the system can estimate object distance without physical contact.
+          </p>
+          <p>
+            This enables robots to anticipate contact before it occurs—a critical capability for safe operation in shared environments. The fully 3D-printed capacitive electrodes are embedded within the skin's dermis and connected to a microcontroller that measures capacitance changes at 15-30 Hz.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRF Mapping -->
+    <div class="columns is-centered has-text-centered" style="margin-top: 2rem;">
+      <div class="column">
+        <h2 class="title is-2">Data-Driven PRF Mapping</h2>
+        <div class="content has-text-justified">
+          <p>
+            To enable contact anticipation, we introduce a data-driven framework for mapping the proximal receptive field (PRF)—the body-centric volume where sensors provide actionable proximity information. The heterogeneous layout and non-linear behavior of 3D-printed capacitive sensors makes analytical modeling intractable.
+          </p>
+          <p>
+            Our approach trains an ensemble of feed-forward MLPs on labeled pairs of capacitance readings and object positions. The ensemble produces position predictions with uncertainties that correlate strongly with true prediction error, enabling the system to filter out unreliable estimates. This creates a probabilistic map of the usable sensing space around the robot, with regions of low uncertainty (≤ 8 cm) suitable for contact anticipation and collision avoidance.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div class="columns is-centered has-text-centered" style="margin-top: 2rem;">
+      <div class="column">
+        <h2 class="title is-2">Evaluation Results</h2>
+        <div class="content has-text-justified">
+          <p>
+            We evaluated five unique GenTact-Prox skin units on a Franka Research 3 robot arm, demonstrating proximity detection and contact anticipation capabilities:
+          </p>
+          <ul>
+            <li><b>Proximity Detection Range:</b> Achieved detection ranges of 2.6 to 18 cm, enabling pre-contact awareness before physical interaction.</li>
+            <li><b>PRF Mapping Accuracy:</b> Strong correlation between predicted uncertainty and true error, with reliable position estimates within 8 cm uncertainty threshold suitable for contact anticipation.</li>
+            <li><b>Contact Anticipation in Control:</b> Demonstrated online collision-compliant control where the robot detects and responds to obstacles before physical contact, slowing down and avoiding obstructed regions.</li>
+            <li><b>Low Cost:</b> Each skin unit costs less than $25 USD to fabricate.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{kohlbrenner2026gentactprox,
+      title={Design, Mapping, and Contact Anticipation with 3D-printed Whole-Body Tactile and Proximity Sensors},
+      author={...},
+      booktitle={2026 IEEE International Conference on Robotics and Automation (ICRA)},
+      year={2026}}
+    </code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content has-text-centered">
+          <p>
+            Thank you <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> for providing the template for this website!
+          </p>
+          <div class="has-text-centered" style="margin-top: 2rem;">
+            <p class="is-size-6 has-text-grey">
+              This work is licensed under a 
+              <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">
+                Creative Commons Attribution-NonCommercial 4.0 International License
+              </a>
+            </p>
+            <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">
+              <img src="https://licensebuttons.net/l/by-nc/4.0/88x31.png" alt="CC BY-NC 4.0" style="margin-top: 0.5rem;">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
