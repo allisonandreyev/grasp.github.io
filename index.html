@@ -1,36 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="description"
-        content="desc">
-  <meta name="keywords" content="arxAIv">
+  <meta name="description" content="GRASP: A Neuro-symbolic Approach for Language-Conditioned Robot Manipulation">
+  <meta name="keywords" content="GRASP, robotics, neuro-symbolic, language-conditioned manipulation, GroundingDINO">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>smth</title>
+  <title>GRASP</title>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-PYVRSFMDRL');
   </script>
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro|Space+Mono" rel="stylesheet">
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="icon" href="./static/images/favicon.svg">
 
@@ -38,75 +28,606 @@
   <script defer src="./static/js/fontawesome.all.min.js"></script>
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <script src="./static/js/index.js"></script>
 </head>
 <body>
 
-<section class="hero landing-hero">
+<!-- ══════════════════════ HERO ══════════════════════ -->
+<section class="hero">
   <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">smth</h1>
-          <p class="subtitle is-3 hero-subtitle">desc</p>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              authors</span>
-          </div>
-
-        </div>
+    <div class="container is-max-desktop has-text-centered">
+      <h1 class="title is-1 publication-title">
+        🎯 GRASP
+      </h1>
+      <p class="subtitle is-3 hero-subtitle">A Neuro-symbolic Approach for Language-Conditioned Robot Manipulation</p>
+      <div class="is-size-5 publication-authors" style="margin-top:0.5rem;">
+        <span class="author-block">Authors</span>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="video">
-  <div class="container is-max-desktop">
-    <div class="has-text-centered">
-      <div class="video-link-row">
+      <div class="video-link-row" style="margin-top:1.25rem;">
+        <a href="" class="video-pill">
+          <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper</span>
+        </a>
         <a href="https://youtu.be/EyoskUy2ZXo" class="video-pill">
-          <span class="icon"><i class="fab fa-youtube"></i></span>
-          <span>Video</span>
+          <span class="icon"><i class="fab fa-youtube"></i></span><span>Video</span>
         </a>
         <a href="https://github.com/allisonandreyev/arxAIv" class="video-pill">
-          <span class="icon"><i class="fab fa-github"></i></span>
-          <span>Code</span>
-        </a>
-        <a href="https://github.com/allisonandreyev/arxaiv.github.io/releases/tag/v0.5" class="video-pill">
-          <span class="icon"><i class="far fa-images"></i></span>
-          <span>Data</span>
+          <span class="icon"><i class="fab fa-github"></i></span><span>Code</span>
         </a>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ══════════════════════ TEASER ══════════════════════ -->
+<section class="section grasp-section-light" id="teaser">
+  <div class="container is-max-desktop">
+    <div class="figure-block visible">
+      <img src="./figures/fig0.png" alt="GRASP teaser: user input, task execution, and goal state">
+      <p class="figure-caption">Given a natural language instruction, GRASP grounds it into a symbolic goal state, executes the manipulation task, and evaluates completion via bounding box similarity.</p>
+    </div>
+  </div>
+</section>
 
-    <!-- Concept. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">smth</h2>
-        <div class="content has-text-justified">
-          <p>stuff</p>
+<!-- ══════════════════════ ABSTRACT + CARDS ══════════════════════ -->
+<section class="section" id="abstract">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-heading">Abstract</h2>
+    <div class="content has-text-justified abstract-text">
+      <p>For robotics to be effectively integrated into household or industrial environments, machines must adapt to natural-language prompts in real time. Although Vision-Language Models (VLMs) have enabled zero-shot generalization in robot task and motion planning (TAMP), current state-of-the-art approaches often remain computationally <em>"heavyweight"</em> or require extensive training on thousands of demonstrations.</p>
+      <p>We present <strong>GRASP</strong> (Grounded Reasoning and Symbolic Planning), a framework designed for open-world tabletop manipulation. Our approach leverages a pretrained VLM to translate natural language queries into neuro-symbolic goal states, grounded in the physical world using a specialized bounding box detection pipeline. Unlike previous methods that rely on fixed color lists or hard-coded coordinates, GRASP enables robots to interpret abstract spatial concepts—such as <em>"top shelf"</em>—and execute tasks without additional fine-tuning.</p>
+    </div>
+
+    <div class="contrib-cards">
+      <div class="contrib-card">
+        <div class="contrib-icon"><i class="fas fa-project-diagram"></i></div>
+        <h3>Neuro-Symbolic Goal States</h3>
+        <p>Natural language instructions compiled into explicit symbolic goal states, enabling interpretable and verifiable task execution.</p>
+      </div>
+      <div class="contrib-card">
+        <div class="contrib-icon"><i class="fas fa-sync-alt"></i></div>
+        <h3>Closed-Loop FSM Control</h3>
+        <p>Closed-loop symbolic goal evaluation replaces policy fine-tuning for small-scale open-world rearrangement with zero-shot execution.</p>
+      </div>
+      <div class="contrib-card">
+        <div class="contrib-icon"><i class="fas fa-crosshairs"></i></div>
+        <h3>Zero-Shot Grounding</h3>
+        <p>A lightweight grounding and proportional control pipeline links open-vocabulary detection to continuous motion without learned action policies.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ ANIMATED PIPELINE ══════════════════════ -->
+<section class="section grasp-section-light" id="pipeline">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-heading">System Pipeline</h2>
+    <p class="section-subheading">At each timestep, GRASP closes the loop between language, perception, and action.</p>
+
+    <div class="pipeline-anim" id="pipeline-anim">
+      <div class="pipe-step" data-step="0">
+        <div class="pipe-node pipe-input">
+          <i class="fas fa-comment-alt"></i>
+          <span class="pipe-label">User Input</span>
+          <span class="pipe-detail">"Place blue objects on top shelf"</span>
+        </div>
+      </div>
+      <div class="pipe-arrow" data-step="1"><i class="fas fa-chevron-right"></i></div>
+      <div class="pipe-step" data-step="2">
+        <div class="pipe-node pipe-llm">
+          <i class="fas fa-brain"></i>
+          <span class="pipe-label">LLM</span>
+          <span class="pipe-detail pipe-mono">JSON goal state</span>
+        </div>
+      </div>
+      <div class="pipe-arrow" data-step="3"><i class="fas fa-chevron-right"></i></div>
+      <div class="pipe-step" data-step="4">
+        <div class="pipe-node pipe-gdino">
+          <i class="fas fa-search"></i>
+          <span class="pipe-label">G.DINO</span>
+          <span class="pipe-detail">Bounding boxes</span>
+        </div>
+      </div>
+      <div class="pipe-arrow" data-step="5"><i class="fas fa-chevron-right"></i></div>
+      <div class="pipe-step" data-step="6">
+        <div class="pipe-node pipe-sim">
+          <i class="fas fa-equals"></i>
+          <span class="pipe-label">Goal Similarity</span>
+          <span class="pipe-detail">IoU + center distance</span>
+        </div>
+      </div>
+      <div class="pipe-arrow" data-step="7"><i class="fas fa-chevron-right"></i></div>
+      <div class="pipe-step" data-step="8">
+        <div class="pipe-node pipe-fsm">
+          <i class="fas fa-robot"></i>
+          <span class="pipe-label">FSM + RPY</span>
+          <span class="pipe-detail">Closed-loop actuation</span>
         </div>
       </div>
     </div>
-    <!--/ Concept. -->
 
+    <div class="pipeline-loop-indicator pipeline-loop-light">
+      <i class="fas fa-redo-alt"></i>
+      <span>Closed loop — re-evaluates every frame until goal is reached</span>
+    </div>
+
+    <div class="figure-block">
+      <img src="./figures/fig2.png" alt="GRASP main loop architecture">
+      <p class="figure-caption"><strong>Figure 2.</strong> The GRASP main loop. GroundingDINO detects objects from shelf and desk frames; the Goal State Similarity Module computes IoU and center distance; Roll-Pitch-Yaw adjustments close the loop until the similarity threshold is met.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ METHOD ══════════════════════ -->
+<section class="section" id="method">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-heading">Method</h2>
+
+    <!-- FSM -->
+    <div class="method-block">
+      <h3 class="title is-4 method-subheading">Finite State Machine</h3>
+      <p class="method-desc">Click any state to see its transition predicates.</p>
+      <div class="fsm-diagram" id="fsm-diagram">
+        <div class="fsm-state" data-state="LOOKING" tabindex="0">
+          <div class="fsm-state-inner"><i class="fas fa-eye"></i><span>LOOKING</span></div>
+        </div>
+        <div class="fsm-connector">
+          <div class="fsm-arrow-line"></div>
+          <div class="fsm-transition-label">close<sub>t</sub></div>
+        </div>
+        <div class="fsm-state" data-state="GRASPED" tabindex="0">
+          <div class="fsm-state-inner"><i class="fas fa-hand-rock"></i><span>GRASPED</span></div>
+        </div>
+        <div class="fsm-connector">
+          <div class="fsm-arrow-line"></div>
+          <div class="fsm-transition-label">det(claw)</div>
+        </div>
+        <div class="fsm-state" data-state="PLACING" tabindex="0">
+          <div class="fsm-state-inner"><i class="fas fa-arrows-alt"></i><span>PLACING</span></div>
+        </div>
+        <div class="fsm-connector">
+          <div class="fsm-arrow-line"></div>
+          <div class="fsm-transition-label">in_goal ∧ release</div>
+        </div>
+        <div class="fsm-state" data-state="PLACED" tabindex="0">
+          <div class="fsm-state-inner"><i class="fas fa-check-circle"></i><span>PLACED</span></div>
+        </div>
+      </div>
+      <div class="fsm-info-panel" id="fsm-info-panel">
+        <p class="fsm-hint"><i class="fas fa-info-circle"></i> Click a state above to see details</p>
+      </div>
+    </div>
+
+    <!-- LLM prompt → goal state figure -->
+    <div class="method-block">
+      <h3 class="title is-4 method-subheading">LLM Prompt → Goal State</h3>
+      <p class="method-desc">A structured prompt instructs the LLM to return a JSON goal state; GroundingDINO candidates are used to ground each label to a bounding box in the scene.</p>
+      <div class="figure-block">
+        <img src="./figures/fig1.png" alt="LLM prompt structure and resulting goal state JSON">
+        <p class="figure-caption"><strong>Figure 1.</strong> User input and LLM prompt (left) produce a structured JSON goal state with per-label bounding box coordinates, which are then visualized on the shelf (right).</p>
+      </div>
+    </div>
+
+    <!-- IoU demo -->
+    <div class="method-block">
+      <h3 class="title is-4 method-subheading">Interactive Similarity Score</h3>
+      <p class="method-desc">Drag or resize the <span style="color:#e67e22;font-weight:600;">orange detection box</span> to explore how IoU and center distance combine into the similarity score: <span class="fsm-predicate">S = max(0, min(1, (IoU + (1 − dist)) / 2))</span></p>
+      <div class="iou-demo-wrap">
+        <canvas id="iou-canvas" width="420" height="280"></canvas>
+        <div class="iou-stats">
+          <div class="iou-stat">
+            <span class="iou-stat-label">IoU</span>
+            <span class="iou-stat-val" id="iou-val">—</span>
+          </div>
+          <div class="iou-stat">
+            <span class="iou-stat-label">Center Dist</span>
+            <span class="iou-stat-val" id="dist-val">—</span>
+          </div>
+          <div class="iou-stat iou-stat-total">
+            <span class="iou-stat-label">Similarity Score</span>
+            <span class="iou-stat-val" id="sim-val">—</span>
+          </div>
+          <div class="iou-score-bar-wrap">
+            <div class="iou-score-bar" id="iou-score-bar"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sim-examples" style="margin-top:1.5rem;">
+        <!-- (a) Low similarity -->
+        <div class="sim-panel">
+          <div class="sim-panel-scenes">
+            <div class="sim-scene-half">
+              <div class="sim-scene-title">Goal State</div>
+              <div class="sim-scene-area">
+                <div class="sim-box sim-box-goal" style="left:5%;top:5%;width:42%;height:45%">metal things</div>
+                <div class="sim-box sim-box-goal" style="left:5%;top:56%;width:58%;height:30%">metal things</div>
+              </div>
+            </div>
+            <div class="sim-scene-half">
+              <div class="sim-scene-title">Shelf State</div>
+              <div class="sim-scene-area">
+                <div class="sim-box sim-box-detect" style="left:32%;top:22%;width:48%;height:22%">metal things</div>
+                <div class="sim-box sim-box-detect" style="left:10%;top:60%;width:68%;height:22%">metal things</div>
+              </div>
+            </div>
+          </div>
+          <div class="sim-panel-foot">
+            <span class="sim-user-prompt">"place the metal things to the right side of the 2 bottom shelves"</span>
+            <span class="sim-score-badge low">Score: 0.266</span>
+          </div>
+        </div>
+        <!-- (b) High similarity -->
+        <div class="sim-panel">
+          <div class="sim-panel-scenes">
+            <div class="sim-scene-half">
+              <div class="sim-scene-title">Goal State</div>
+              <div class="sim-scene-area">
+                <div class="sim-box sim-box-goal" style="left:10%;top:10%;width:40%;height:38%">basketball</div>
+              </div>
+            </div>
+            <div class="sim-scene-half">
+              <div class="sim-scene-title">Shelf State</div>
+              <div class="sim-scene-area">
+                <div class="sim-box sim-box-detect" style="left:13%;top:8%;width:37%;height:41%">basketball</div>
+              </div>
+            </div>
+          </div>
+          <div class="sim-panel-foot">
+            <span class="sim-user-prompt">"put the basketball on top of the red cube that's on the top shelf"</span>
+            <span class="sim-score-badge high">Score: 0.783</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </div>
 </section>
 
+<!-- ══════════════════════ RESULTS ══════════════════════ -->
+<section class="section grasp-section-light" id="results">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-heading">Results</h2>
 
-<section class="section" id="media-gallery">
-  <div class="container is-max-widescreen">
-   <p>section</p>
+    <!-- Grasping benchmark -->
+    <h3 class="title is-4 method-subheading">Closed-Loop Grasping Benchmark</h3>
+    <p class="method-desc">90 total trials: 3 difficulty levels × 3 objects × 10 trials each.</p>
+
+    <div class="figure-block" style="margin-top:0; margin-bottom:1.5rem;">
+      <img src="./figures/fig6.png" alt="Difficulty condition examples: Easy, Medium, Hard">
+      <p class="figure-caption"><strong>Figure 6.</strong> Representative grasping scenarios for each difficulty level. Easy: single object, no visual occlusion. Medium: some visual occlusion with distractors. Hard: heavy visual occlusion and multiple objects per frame.</p>
+    </div>
+
+    <div class="difficulty-cards">
+
+      <div class="diff-card diff-easy">
+        <div class="diff-header">
+          <span class="diff-badge badge-easy">Easy</span>
+          <span class="diff-desc">Single object, minimal occlusion</span>
+        </div>
+        <div class="diff-objects">
+          <div class="diff-obj">
+            <span class="obj-name">Brown Block</span>
+            <div class="success-bar-wrap"><div class="success-bar" style="width:70%"></div></div>
+            <span class="obj-score">7/10</span>
+          </div>
+          <div class="diff-obj">
+            <span class="obj-name">Bubble Wrap</span>
+            <div class="success-bar-wrap"><div class="success-bar" style="width:100%"></div></div>
+            <span class="obj-score">10/10</span>
+          </div>
+          <div class="diff-obj">
+            <span class="obj-name">Pink Bottle</span>
+            <div class="success-bar-wrap"><div class="success-bar" style="width:90%"></div></div>
+            <span class="obj-score">9/10</span>
+          </div>
+        </div>
+        <div class="diff-total"><span>Overall</span><strong>86.7%</strong></div>
+      </div>
+
+      <div class="diff-card diff-medium">
+        <div class="diff-header">
+          <span class="diff-badge badge-medium">Medium</span>
+          <span class="diff-desc">Distractors, partial occlusion</span>
+        </div>
+        <div class="diff-objects">
+          <div class="diff-obj">
+            <span class="obj-name">Brown Rect Prism</span>
+            <div class="success-bar-wrap"><div class="success-bar" style="width:80%"></div></div>
+            <span class="obj-score">8/10</span>
+          </div>
+          <div class="diff-obj">
+            <span class="obj-name">Yellow Tape</span>
+            <div class="success-bar-wrap"><div class="success-bar" style="width:80%"></div></div>
+            <span class="obj-score">8/10</span>
+          </div>
+          <div class="diff-obj">
+            <span class="obj-name">Letter 'T'</span>
+            <div class="success-bar-wrap"><div class="success-bar" style="width:70%"></div></div>
+            <span class="obj-score">7/10</span>
+          </div>
+        </div>
+        <div class="diff-total"><span>Overall</span><strong>76.7%</strong></div>
+      </div>
+
+      <div class="diff-card diff-hard">
+        <div class="diff-header">
+          <span class="diff-badge badge-hard">Hard</span>
+          <span class="diff-desc">Heavy clutter, high occlusion</span>
+        </div>
+        <div class="diff-objects">
+          <div class="diff-obj">
+            <span class="obj-name">Blk/Ylw Screwdriver</span>
+            <div class="success-bar-wrap"><div class="success-bar" style="width:70%"></div></div>
+            <span class="obj-score">7/10</span>
+          </div>
+          <div class="diff-obj">
+            <span class="obj-name">Magenta Marker</span>
+            <div class="success-bar-wrap"><div class="success-bar" style="width:50%"></div></div>
+            <span class="obj-score">5/10</span>
+          </div>
+          <div class="diff-obj">
+            <span class="obj-name">Lime Green Scissors</span>
+            <div class="success-bar-wrap"><div class="success-bar" style="width:50%"></div></div>
+            <span class="obj-score">5/10</span>
+          </div>
+        </div>
+        <div class="diff-total"><span>Overall</span><strong>56.7%</strong></div>
+      </div>
+
+    </div>
+
+    <!-- User study -->
+    <div class="method-block" style="margin-top:3rem;">
+      <h3 class="title is-4 method-subheading">User Study — Goal State Quality (Likert 1–5)</h3>
+      <p class="method-desc">31 participants aged 15–45. Average rating: <strong>4.18</strong> (σ = 1.14). Over 50% of responses in every category rated the visualization a 5.</p>
+      <div class="likert-chart-wrap">
+        <canvas id="likert-chart" height="160"></canvas>
+      </div>
+      <div class="us-cards">
+        <div class="us-card">
+          <div class="us-card-header">Two-Group Cross Constraints</div>
+          <div class="us-card-prompt">"Move all large bottles to the left side and all small cubes to the right side"</div>
+          <div class="us-card-vis">
+            <div class="shelf-vis">
+              <div class="shelf-region shelf-left-reg" style="left:4%;width:42%;top:8%;height:82%">
+                <span class="shelf-label">large bottles</span>
+              </div>
+              <div class="shelf-region shelf-right-reg" style="left:54%;width:42%;top:8%;height:82%">
+                <span class="shelf-label">small cubes</span>
+              </div>
+            </div>
+          </div>
+          <div class="us-card-rating">
+            <span class="us-rating-label">Rate 1–5</span>
+            <div class="us-rating-pips">
+              <div class="us-pip">1</div><div class="us-pip">2</div><div class="us-pip">3</div><div class="us-pip">4</div><div class="us-pip">5</div>
+            </div>
+          </div>
+        </div>
+        <div class="us-card">
+          <div class="us-card-header">Triple-Attribute Filtering</div>
+          <div class="us-card-prompt">"Place all small red metal objects on the top shelf"</div>
+          <div class="us-card-vis">
+            <div class="shelf-vis">
+              <div class="shelf-region shelf-top-reg" style="top:6%;left:5%;width:90%;height:38%">
+                <span class="shelf-label">small red metal</span>
+              </div>
+            </div>
+          </div>
+          <div class="us-card-rating">
+            <span class="us-rating-label">Rate 1–5</span>
+            <div class="us-rating-pips">
+              <div class="us-pip">1</div><div class="us-pip">2</div><div class="us-pip">3</div><div class="us-pip">4</div><div class="us-pip">5</div>
+            </div>
+          </div>
+        </div>
+        <div class="us-card">
+          <div class="us-card-header">Three-Way Spatial Partition</div>
+          <div class="us-card-prompt">"Place red objects on top, metal objects in the middle, and striped objects on the bottom"</div>
+          <div class="us-card-vis">
+            <div class="shelf-vis">
+              <div class="shelf-region shelf-top-reg" style="top:4%;left:5%;width:90%;height:26%">
+                <span class="shelf-label">red</span>
+              </div>
+              <div class="shelf-region shelf-mid-reg" style="top:37%;left:5%;width:90%;height:26%">
+                <span class="shelf-label">metal</span>
+              </div>
+              <div class="shelf-region shelf-bot-reg" style="top:70%;left:5%;width:90%;height:26%">
+                <span class="shelf-label">striped</span>
+              </div>
+            </div>
+          </div>
+          <div class="us-card-rating">
+            <span class="us-rating-label">Rate 1–5</span>
+            <div class="us-rating-pips">
+              <div class="us-pip">1</div><div class="us-pip">2</div><div class="us-pip">3</div><div class="us-pip">4</div><div class="us-pip">5</div>
+            </div>
+          </div>
+        </div>
+        <div class="us-card">
+          <div class="us-card-header">Overlapping Constraints</div>
+          <div class="us-card-prompt">"Move all smooth blue objects to the right side and all textured blue objects to the left side"</div>
+          <div class="us-card-vis">
+            <div class="shelf-vis">
+              <div class="shelf-region shelf-left-reg" style="left:4%;width:42%;top:8%;height:82%">
+                <span class="shelf-label">textured blue</span>
+              </div>
+              <div class="shelf-region shelf-right-reg" style="left:54%;width:42%;top:8%;height:82%">
+                <span class="shelf-label">smooth blue</span>
+              </div>
+            </div>
+          </div>
+          <div class="us-card-rating">
+            <span class="us-rating-label">Rate 1–5</span>
+            <div class="us-rating-pips">
+              <div class="us-pip">1</div><div class="us-pip">2</div><div class="us-pip">3</div><div class="us-pip">4</div><div class="us-pip">5</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comparison table -->
+    <div class="method-block" style="margin-top:3rem;">
+      <h3 class="title is-4 method-subheading">Training Data Comparison</h3>
+      <p class="method-desc">Per-task training data requirements across language-conditioned manipulation systems. Click a column header to sort.</p>
+      <div class="table-wrap">
+        <table class="comparison-table" id="comparison-table">
+          <thead>
+            <tr>
+              <th class="sortable" data-col="paper">Paper <i class="fas fa-sort sort-icon"></i></th>
+              <th class="sortable" data-col="demos">Demos / Task <i class="fas fa-sort sort-icon"></i></th>
+              <th>Training Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>GEM</td><td data-val="15">10–20</td><td>Imitation</td></tr>
+            <tr><td>LEMMA</td><td data-val="800">800</td><td>Imitation</td></tr>
+            <tr><td>RFST</td><td data-val="1000">1,000</td><td>Imitation</td></tr>
+            <tr><td>ERRA</td><td data-val="300">300</td><td>Inference learning</td></tr>
+            <tr><td>RoboMamba</td><td data-val="500">~500</td><td>Sim fine-tune</td></tr>
+            <tr><td>MOO</td><td data-val="11800">~11.8K</td><td>Teleop imitation</td></tr>
+            <tr><td>LoHoRavens</td><td data-val="20000">20K</td><td>Primitive IL</td></tr>
+            <tr class="grasp-row"><td><strong>GRASP (Ours)</strong></td><td data-val="0"><strong>0</strong></td><td><strong>Zero-shot</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="section" id="embedded-graphs">
-  <div class="container is-max-widescreen">
-    <p>section</p>
+<!-- ══════════════════════ HARDWARE ══════════════════════ -->
+<section class="section" id="hardware">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-heading">Hardware Setup</h2>
+    <div class="hardware-layout">
+      <div class="hardware-img-wrap">
+        <!-- Replace with: static/images/robot_platform.jpg -->
+        <div class="hardware-placeholder">
+          <i class="fas fa-robot hardware-placeholder-icon"></i>
+          <p>Robot platform photo</p>
+          <p class="hardware-placeholder-hint">Upload as <code>static/images/robot_platform.jpg</code></p>
+        </div>
+        <div class="hardware-callout" style="top:22%;left:58%;">
+          <div class="callout-dot"></div>
+          <div class="callout-text">Shelf Webcam</div>
+        </div>
+        <div class="hardware-callout" style="top:42%;left:62%;">
+          <div class="callout-dot"></div>
+          <div class="callout-text">Differential Claw</div>
+        </div>
+        <div class="hardware-callout" style="top:60%;left:60%;">
+          <div class="callout-dot"></div>
+          <div class="callout-text">PiCam (end-effector)</div>
+        </div>
+      </div>
+      <div class="hardware-specs">
+        <div class="hw-spec-item">
+          <i class="fas fa-camera"></i>
+          <div>
+            <strong>Dual Camera System</strong>
+            <p>Fixed shelf webcam for global scene view + PiCam on end-effector for close-range object localization</p>
+          </div>
+        </div>
+        <div class="hw-spec-item">
+          <i class="fas fa-hand-rock"></i>
+          <div>
+            <strong>Differential Claw</strong>
+            <p>Controlled via RPY adjustments derived from bounding box center offsets — no learned motor policies</p>
+          </div>
+        </div>
+        <div class="hw-spec-item">
+          <i class="fas fa-bolt"></i>
+          <div>
+            <strong>Zero Fine-Tuning</strong>
+            <p>GroundingDINO + GPT used entirely off-the-shelf — no task-specific retraining required</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ ABLATION ══════════════════════ -->
+<section class="section grasp-section-light" id="ablation">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-heading">Ablation Study</h2>
+    <p class="method-desc">Three conditions evaluated against the full GRASP system.</p>
+    <div class="ablation-cards">
+      <div class="ablation-card">
+        <div class="ablation-icon"><i class="fas fa-wave-square"></i></div>
+        <h4>No Smoothing &amp; Deadband</h4>
+        <p>Motion planning without exponential smoothing or deadband filtering. Isolates the contribution of noise-reduction to stable grasping.</p>
+      </div>
+      <div class="ablation-card">
+        <div class="ablation-icon"><i class="fas fa-lock-open"></i></div>
+        <h4>Open-Loop vs. Closed-Loop</h4>
+        <p>Compares alignment quality when the system executes a fixed plan without re-evaluating scene state versus full closed-loop feedback.</p>
+      </div>
+      <div class="ablation-card">
+        <div class="ablation-icon"><i class="fas fa-random"></i></div>
+        <h4>Random Logit Selection</h4>
+        <p>Replaces highest-confidence G.DINO logit selection with random bounding box selection, isolating confidence-ranked targeting contribution.</p>
+      </div>
+    </div>
+    <div class="table-wrap" style="margin-top:1.25rem;">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Loop</th>
+            <th>Smoothing</th>
+            <th>Deadband</th>
+            <th>Selection</th>
+            <th>Success Rate</th>
+            <th>Net Latency (s)</th>
+            <th>Inference (s)</th>
+            <th>Total (s)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Open</td><td>✓</td><td>✓</td><td>Highest logit</td>
+            <td>4/10</td><td>4.421</td><td>5.495</td><td>12.416</td>
+          </tr>
+          <tr>
+            <td>Closed</td><td>—</td><td>—</td><td>Highest logit</td>
+            <td>5/10</td><td>4.097</td><td>4.984</td><td>7.072</td>
+          </tr>
+          <tr>
+            <td>Closed</td><td>✓</td><td>✓</td><td>Random</td>
+            <td>3/10</td><td>3.560</td><td>3.377</td><td>6.001</td>
+          </tr>
+          <tr>
+            <td>Closed</td><td>✓</td><td>✓</td><td>First</td>
+            <td>4/10</td><td>3.537</td><td>3.244</td><td>4.134</td>
+          </tr>
+          <tr class="grasp-row">
+            <td><strong>Closed</strong></td><td><strong>✓</strong></td><td><strong>✓</strong></td><td><strong>Highest logit</strong></td>
+            <td><strong>8/10</strong></td><td><strong>3.539</strong></td><td><strong>3.444</strong></td><td><strong>4.036</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="ablation-note" style="margin-top:0.75rem;"><i class="fas fa-info-circle"></i> Highlighted row is the full GRASP system. All timing metrics averaged over 10 trials.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════ BIBTEX ══════════════════════ -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3 section-heading">BibTeX</h2>
+    <div class="bibtex-wrap">
+      <pre id="bibtex-code">@article{grasp2025,
+  title     = {GRASP: A Neuro-symbolic Approach for
+               Language-Conditioned Robot Manipulation},
+  author    = {Author(s)},
+  year      = {2026},
+}</pre>
+      <button class="bibtex-copy-btn" id="bibtex-copy-btn" title="Copy BibTeX">
+        <i class="fas fa-copy" id="bibtex-copy-icon"></i>
+        <span id="bibtex-copy-label">Copy</span>
+      </button>
+    </div>
   </div>
 </section>
 
@@ -114,58 +635,22 @@
 <div class="modal" id="image-modal" aria-label="Expanded image modal">
   <div class="modal-background"></div>
   <div class="modal-content">
-    <figure class="image">
-      <img id="modal-image" alt="">
-    </figure>
+    <figure class="image"><img id="modal-image" alt=""></figure>
   </div>
   <button class="modal-close is-large" aria-label="close"></button>
 </div>
 
-
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>tbd!!</code></pre>
-  </div>
-</section>
-
-<section class="section" id="related-links">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Related Links</h2>
-
-        <div class="content has-text-justified">
-          <p>links</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
 <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
-      <a class="icon-link" href="https://github.com/allisonandreyev/arxaiv" class="external-link" disabled>
+      <a class="icon-link" href="https://github.com/allisonandreyev/arxaiv">
         <i class="fab fa-github"></i>
       </a>
     </div>
     <div class="columns is-centered">
       <div class="column is-8">
-        <div class="content">
-          <p>
-            This website is licensed under a <a rel="license"
-                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-          <p>
-            This means you are free to borrow the <a
-              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
-            we just ask that you link back to this page in the footer.
-            Please remember to remove the analytics code included in the header of the website which
-            you do not want on your website.
-          </p>
+        <div class="content has-text-centered" style="font-size:0.85rem;color:#888;">
+          <p>Website template based on <a href="https://nerfies.github.io" target="_blank">Nerfies</a>. Licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p>
         </div>
       </div>
     </div>
