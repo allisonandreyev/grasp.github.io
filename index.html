@@ -42,14 +42,16 @@
       </h1>
       <p class="subtitle is-3 hero-subtitle">A Neuro-symbolic Approach for Language-Conditioned Robot Manipulation</p>
       <div class="is-size-5 publication-authors" style="margin-top:0.5rem;">
-        <span class="author-block">Authors</span>
+        <span class="author-block">Allison Andreyev, Landon Eum, Nestor Tiglao, Romel Gomez</span>
+      </div>
+      <div class="is-size-6 publication-authors" style="margin-top:0.25rem;">
+        <span class="author-block">Cyberphysical Systems Engineering, UMD College Park</span>
       </div>
       <div class="video-link-row" style="margin-top:1.25rem;">
         <a href="" class="video-pill">
           <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper</span>
         </a>
-          <span class="icon"><i class="fab fa-youtube"></i></span><span>Video</span>
-        </a>
+        <a href="https://github.com/allisonandreyev/grasp" class="video-pill" target="_blank">
           <span class="icon"><i class="fab fa-github"></i></span><span>Code</span>
         </a>
       </div>
@@ -72,8 +74,8 @@
   <div class="container is-max-desktop">
     <h2 class="title is-3 section-heading">Abstract</h2>
     <div class="content has-text-justified abstract-text">
-      <p>For robotics to be effectively integrated into household or industrial environments, machines must adapt to natural-language prompts in real time. Although Vision-Language Models (VLMs) have enabled zero-shot generalization in robot task and motion planning (TAMP), current state-of-the-art approaches often remain computationally <em>"heavyweight"</em> or require extensive training on thousands of demonstrations.</p>
-      <p>We present <strong>GRASP</strong> (Grounded Reasoning and Symbolic Planning), a framework designed for open-world tabletop manipulation. Our approach leverages a pretrained VLM to translate natural language queries into neuro-symbolic goal states, grounded in the physical world using a specialized bounding box detection pipeline. Unlike previous methods that rely on fixed color lists or hard-coded coordinates, GRASP enables robots to interpret abstract spatial concepts—such as <em>"top shelf"</em>—and execute tasks without additional fine-tuning.</p>
+      <p>For robotics to be effectively integrated into household or industrial environments, machines must adapt to natural-language prompts in real time. Although Vision-Language Models (VLMs) have enabled zero-shot generalization in robot task and motion planning (TAMP), current state-of-the-art approaches often remain computationally <b>heavyweight</b> or require extensive training on thousands of demonstrations.</p>
+      <p>We present GRASP (Grounded Reasoning and Symbolic Planning), a framework designed for open-world tabletop manipulation. Our approach leverages a pretrained VLM to translate natural-language queries into neuro-symbolic goal states, which are then grounded in the physical world via a specialized bounding-box detection pipeline. Unlike previous methods that rely on fixed color lists or hard-coded coordinates, GRASP enables robots to interpret abstract spatial concepts—such as <b>top shelf</b>—and execute tasks without additional fine-tuning. Experimental results demonstrate that our system achieves high instruction compliance and precision, offering a scalable solution for general-purpose robotic sorting and arrangement.</p>
     </div>
 
     <div class="contrib-cards">
@@ -618,7 +620,7 @@
       <pre id="bibtex-code">@article{grasp2025,
   title     = {GRASP: A Neuro-symbolic Approach for
                Language-Conditioned Robot Manipulation},
-  author    = {Author(s)},
+  author    = {Allison Andreyev and Landon Eum and Nestor Tiglao and Romel Gomez},
   year      = {2026},
 }</pre>
       <button class="bibtex-copy-btn" id="bibtex-copy-btn" title="Copy BibTeX">

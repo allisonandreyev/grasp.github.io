@@ -119,6 +119,7 @@ body {
 }
 
 .method-block { margin-bottom: 3rem; }
+.method-block:last-child { margin-bottom: 0; }
 
 /* ─── Abstract ───────────────────────────────────────────── */
 .abstract-text {
@@ -781,6 +782,8 @@ body {
 .ablation-card p { font-size: 0.86rem; color: var(--nerfies-text-m); line-height: 1.5; margin: 0; }
 .ablation-note { font-size: 0.86rem; color: var(--nerfies-text-l); }
 
+#BibTeX { padding-bottom: 0.75rem; }
+
 /* ─── BibTeX ─────────────────────────────────────────────── */
 .bibtex-wrap {
   position: relative;
@@ -844,13 +847,16 @@ body {
 .figure-block img {
   max-width: 100%;
   border-radius: var(--radius);
-  box-shadow: var(--shadow-h);
   display: block;
   margin: 0 auto;
   cursor: zoom-in;
   opacity: 0;
   transform: translateY(18px);
   transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.figure-block.likert-figure img {
+  box-shadow: var(--shadow-h);
 }
 .figure-block.visible img {
   opacity: 1;
