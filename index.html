@@ -5,7 +5,7 @@
   <meta name="description" content="GRASP: A Neuro-symbolic Approach for Language-Conditioned Robot Manipulation">
   <meta name="keywords" content="GRASP, robotics, neuro-symbolic, language-conditioned manipulation, GroundingDINO">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GRASP</title>
+  <title>GRASP: Grounded Reasoning and Symbolic Planning</title>
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
   <script>
@@ -40,7 +40,8 @@
       <h1 class="title is-1 publication-title">
         🎯 GRASP
       </h1>
-      <p class="subtitle is-3 hero-subtitle">Bounding Boxes as Goals: Grounding Language for Zero-Shot Robotic Sorting</p>
+      <p class="subtitle is-3 hero-subtitle">Bounding Boxes as Goals: Language-Conditioned
+        Grasping via Neuro-Symbolic Planning</p>
       <div class="is-size-5 publication-authors" style="margin-top:0.5rem;">
         <span class="author-block">Allison Andreyev, Landon Eum, Nestor Tiglao, Romel Gomez</span>
       </div>
@@ -74,8 +75,7 @@
   <div class="container is-max-desktop">
     <h2 class="title is-3 section-heading">Abstract</h2>
     <div class="content has-text-justified abstract-text">
-      <p>For robotics to be effectively integrated into household or industrial environments, machines must adapt to natural-language prompts in real time. Although Vision-Language Models (VLMs) have enabled zero-shot generalization in robot task and motion planning (TAMP), current state-of-the-art approaches often remain computationally <b>heavyweight</b> or require extensive training on thousands of demonstrations.</p>
-      <p>We present GRASP (Grounded Reasoning and Symbolic Planning), a framework designed for open-world tabletop manipulation. Our approach leverages a pretrained VLM to translate natural-language queries into neuro-symbolic goal states, which are then grounded in the physical world via a specialized bounding-box detection pipeline. Unlike previous methods that rely on fixed color lists or hard-coded coordinates, GRASP enables robots to interpret abstract spatial concepts—such as <b>top shelf</b>—and execute tasks without additional fine-tuning. Experimental results demonstrate that our system achieves high instruction compliance and precision, offering a scalable solution for general-purpose robotic sorting and arrangement.</p>
+      <p>For robotics to be effectively integrated into household or industrial environments, machines must adapt to natural-language prompts in real time. Although vision-language models (VLMs) have enabled zero-shot generalization in robot task and motion planning (TAMP), current state-of-the-art approaches often remain computationally <b>heavyweight</b> or require extensive training on thousands of demonstrations. In this paper, we present GRASP (Grounded Reasoning and Symbolic Planning), a framework designed as a step toward open-vocabulary tabletop manipulation. Our approach leverages a pretrained VLM to translate natural-language queries into neuro-symbolic goal states, which are then grounded in the physical world via a specialized bounding-box detection pipeline. Unlike previous methods that rely on fixed color lists or hard-coded coordinates, GRASP enables robots to interpret abstract spatial concepts—such as <b>top shelf</b>—and execute tasks without additional fine-tuning. Experimental results demonstrate that our system achieves high instruction compliance and precision, offering a scalable solution for general-purpose robotic sorting and arrangement.</p>
     </div>
 
     <div class="contrib-cards">
@@ -514,24 +514,40 @@
       </div>
       <div class="hardware-specs">
         <div class="hw-spec-item">
-          <i class="fas fa-camera"></i>
-          <div>
-            <strong>Dual Camera System</strong>
-            <p>Fixed shelf webcam for global scene view + PiCam on end-effector for close-range object localization</p>
-          </div>
-        </div>
-        <div class="hw-spec-item">
           <i class="fas fa-hand-rock"></i>
           <div>
-            <strong>Differential Claw</strong>
-            <p>Controlled via RPY adjustments derived from bounding box center offsets — no learned motor policies</p>
+            <strong>Robot Arm</strong>
+            <p>Custom-designed differential claw arm, 3 degrees of freedom, controlled via Python on Raspberry Pi 4B</p>
           </div>
         </div>
         <div class="hw-spec-item">
-          <i class="fas fa-bolt"></i>
+          <i class="fas fa-camera"></i>
           <div>
-            <strong>Zero Fine-Tuning</strong>
-            <p>GroundingDINO + GPT used entirely off-the-shelf — no task-specific retraining required</p>
+            <strong>Global Scene Camera</strong>
+            <p>Logitech Brio 100 — 1080p @ 30fps, 58° diagonal FOV, fixed focus, USB-A, mounted at top of shelf looking down over workspace</p>
+          </div>
+        </div>
+        <div class="hw-spec-item">
+          <i class="fas fa-camera"></i>
+          <div>
+            <strong>End-Effector Camera</strong>
+            <p>Raspberry Pi Camera Module v2 — 8MP Sony IMX219, 3280×2464 still / 1080p @ 30fps video, 62.2° H × 48.8° V FOV, fixed focus, CSI ribbon cable, mounted on end-effector</p>
+          </div>
+        </div>
+        <div class="hw-spec-item">
+          <i class="fas fa-microchip"></i>
+          <div>
+            <strong>Compute</strong>
+            <p><strong>Raspberry Pi 4B</strong> (Linux) — Onboard Python control and actuation<br>
+               <strong>MacBook Air</strong> — GroundingDINO inference offloaded over WiFi<br>
+               <strong>GPT-4o</strong> — Cloud API</p>
+          </div>
+        </div>
+        <div class="hw-spec-item">
+          <i class="fas fa-network-wired"></i>
+          <div>
+            <strong>Network Architecture</strong>
+            <p>Pi captures frames → transmits to MacBook over WiFi → MacBook runs G.DINO → returns annotated frames to Pi. "Network latency" in ablations refers to round-trip time.</p>
           </div>
         </div>
       </div>
@@ -608,7 +624,7 @@
   <div class="container is-max-desktop content">
     <h2 class="title is-3 section-heading">BibTeX</h2>
     <div class="bibtex-wrap">
-      <pre id="bibtex-code">@article{grasp2025,
+      <pre id="bibtex-code">@article{grasp2026,
   title     = {GRASP: A Neuro-symbolic Approach for
                Language-Conditioned Robot Manipulation},
   author    = {Allison Andreyev and Landon Eum and Nestor Tiglao and Romel Gomez},
@@ -634,7 +650,7 @@
 <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
-      <a class="icon-link" href="https://github.com/allisonandreyev/arxaiv">
+      <a class="icon-link" href="https://github.com/allisonandreyev/grasp">
         <i class="fab fa-github"></i>
       </a>
     </div>

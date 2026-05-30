@@ -695,7 +695,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2.25rem;
-  align-items: start;
+  align-items: center;
 }
 @media (max-width: 768px) { .hardware-layout { grid-template-columns: 1fr; } }
 
