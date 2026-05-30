@@ -734,7 +734,7 @@ body {
   flex-shrink: 0;
 }
 .callout-text {
-  background: #363636;
+  background: rgba(54,54,54,0.5);
   color: #fff;
   font-size: 0.72rem;
   font-weight: 600;
