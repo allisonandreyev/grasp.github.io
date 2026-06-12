@@ -26,12 +26,12 @@ body {
 
 /* ─── Hero ─────────────────────────────────────────────────── */
 .hero .hero-body {
-  padding-top: 1.25rem;
-  padding-bottom: 0.25rem;
+  padding-top: 3rem;
+  padding-bottom: 1rem;
 }
 
-#teaser { padding-top: 0.25rem; padding-bottom: 0.5rem; }
-#abstract { padding-top: 0.5rem; }
+#teaser { padding-top: 0; }
+#abstract { padding-top: 0; }
 
 .publication-title {
   font-family: 'Google Sans', sans-serif;
@@ -89,7 +89,7 @@ body {
 /* ─── Section layouts ─────────────────────────────────────── */
 .grasp-section-light { background: transparent; }
 
-.section { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+.section { padding: 3rem 1.5rem; }
 
 /* nerfies-style section heading with simpact-style border */
 .section-heading {
