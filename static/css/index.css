@@ -26,11 +26,12 @@ body {
 
 /* ─── Hero ─────────────────────────────────────────────────── */
 .hero .hero-body {
-  padding-top: 3rem;
-  padding-bottom: 0.75rem;
+  padding-top: 1.25rem;
+  padding-bottom: 0.25rem;
 }
 
-#teaser { padding-top: 0.75rem; }
+#teaser { padding-top: 0.25rem; padding-bottom: 0.5rem; }
+#abstract { padding-top: 0.5rem; }
 
 .publication-title {
   font-family: 'Google Sans', sans-serif;
